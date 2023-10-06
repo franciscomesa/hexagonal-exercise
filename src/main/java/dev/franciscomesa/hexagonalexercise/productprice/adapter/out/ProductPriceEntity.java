@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -37,10 +38,14 @@ public class ProductPriceEntity {
     public ProductPriceEntity() {
     }
 
+    public static ProductPriceEntity createPriceWithStringDates(Long productId, Long brandId, String startDate, String endDate, Long priceList, Long priority, Double price, String currency) {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
+        return createPrice(productId, brandId, LocalDateTime.parse(startDate, dateFormatter), LocalDateTime.parse(endDate, dateFormatter), priceList, priority, price, currency);
+    }
+
     public static ProductPriceEntity createPrice(Long productId, Long brandId, LocalDateTime startDate, LocalDateTime endDate, Long priceList, Long priority, Double price, String currency) {
         return new ProductPriceEntity(productId, brandId, startDate, endDate, priceList, priority, price, currency);
     }
-
 
     @Override
     public String toString() {
