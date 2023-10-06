@@ -1,7 +1,7 @@
 package dev.franciscomesa.hexagonalexercise;
 
-import dev.franciscomesa.hexagonalexercise.productprice.adapter.out.ProductPriceEntity;
-import dev.franciscomesa.hexagonalexercise.productprice.domain.repository.ProductPriceRepository;
+import dev.franciscomesa.hexagonalexercise.productprice.application.ports.out.ProductPriceEntity;
+import dev.franciscomesa.hexagonalexercise.productprice.infraestructure.ProductPriceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;

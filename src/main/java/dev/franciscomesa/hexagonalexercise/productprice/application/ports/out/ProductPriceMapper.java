@@ -1,6 +1,6 @@
-package dev.franciscomesa.hexagonalexercise.productprice.adapter.out;
+package dev.franciscomesa.hexagonalexercise.productprice.application.ports.out;
 
-import dev.franciscomesa.hexagonalexercise.productprice.domain.model.ProductPrice;
+import dev.franciscomesa.hexagonalexercise.productprice.domain.ProductPrice;
 
 public class ProductPriceMapper {
     public static ProductPrice entityToDomain(ProductPriceEntity productPrice) {

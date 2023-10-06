@@ -1,4 +1,4 @@
-package dev.franciscomesa.hexagonalexercise.productprice.domain.model;
+package dev.franciscomesa.hexagonalexercise.productprice.domain;
 
 import lombok.Getter;
 

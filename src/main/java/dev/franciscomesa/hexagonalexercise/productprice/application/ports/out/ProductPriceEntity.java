@@ -1,4 +1,4 @@
-package dev.franciscomesa.hexagonalexercise.productprice.adapter.out;
+package dev.franciscomesa.hexagonalexercise.productprice.application.ports.out;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

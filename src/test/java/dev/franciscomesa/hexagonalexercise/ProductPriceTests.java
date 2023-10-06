@@ -1,6 +1,6 @@
 package dev.franciscomesa.hexagonalexercise;
 
-import dev.franciscomesa.hexagonalexercise.productprice.domain.model.ProductPrice;
+import dev.franciscomesa.hexagonalexercise.productprice.domain.ProductPrice;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
