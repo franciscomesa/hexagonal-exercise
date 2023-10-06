@@ -34,7 +34,7 @@ public class ProductPriceTests {
     @Test
     public void productPrice_return_a_value_if_applied_date_is_start_date() {
         Optional<ProductPrice> productPrice = ProductPrice
-                .getAppliedProductPrice(productPrices, ProductPriceTests.stringToLocalDateTimeHelper("2024-01-06 00.01.00"));
+                .getAppliedProductPrice(productPrices, LocalDateTimeHelper.fromString("2024-01-06 00.01.00"));
 
         assertTrue(productPrice.isPresent());
     }
@@ -42,7 +42,7 @@ public class ProductPriceTests {
     @Test
     public void productPrice_return_a_value_if_applied_date_is_end_date() {
         Optional<ProductPrice> productPrice = ProductPrice
-                .getAppliedProductPrice(productPrices, ProductPriceTests.stringToLocalDateTimeHelper("2024-12-31 23.59.59"));
+                .getAppliedProductPrice(productPrices, LocalDateTimeHelper.fromString("2024-12-31 23.59.59"));
 
         assertTrue(productPrice.isPresent());
     }
@@ -50,7 +50,7 @@ public class ProductPriceTests {
     @Test
     public void productPrice_return_a_value_if_applied_date_is_between_start_and_end_dates() {
         Optional<ProductPrice> productPrice = ProductPrice
-                .getAppliedProductPrice(productPrices, ProductPriceTests.stringToLocalDateTimeHelper("2024-02-02 00.00.00"));
+                .getAppliedProductPrice(productPrices, LocalDateTimeHelper.fromString("2024-02-02 00.00.00"));
 
         assertTrue(productPrice.isPresent());
         assertEquals(productPrice.get().price, 1.0);
@@ -59,7 +59,7 @@ public class ProductPriceTests {
     @Test
     public void productPrice_return_the_price_with_highest_priority_if_two_prices_in_applied_date() {
         Optional<ProductPrice> productPrice = ProductPrice
-                .getAppliedProductPrice(productPrices, ProductPriceTests.stringToLocalDateTimeHelper("2024-01-06 17.00.00"));
+                .getAppliedProductPrice(productPrices, LocalDateTimeHelper.fromString("2024-01-06 17.00.00"));
 
         assertTrue(productPrice.isPresent());
         assertEquals(productPrice.get().price, 2.0);
@@ -75,13 +75,8 @@ public class ProductPriceTests {
                 DEFAULT_BRAND,
                 DEFAULT_PRICE_LIST,
                 priority,
-                ProductPriceTests.stringToLocalDateTimeHelper(startDate),
-                ProductPriceTests.stringToLocalDateTimeHelper(endDate),
+                LocalDateTimeHelper.fromString(startDate),
+                LocalDateTimeHelper.fromString(endDate),
                 price);
-    }
-
-    private static LocalDateTime stringToLocalDateTimeHelper(String date) {
-        DateTimeFormatter dateFormatterHelper = DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss");
-        return LocalDateTime.parse(date, dateFormatterHelper);
     }
 }
