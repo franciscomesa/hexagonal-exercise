@@ -1,6 +1,5 @@
 package dev.franciscomesa.hexagonalexercise;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,12 +28,8 @@ public class AcceptanceTests {
 
         ResultActions result = mockMvc.perform(request);
 
-        result
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(7)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(35455))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(35.50));
+        expectDefaultResults(result)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(35.50));
     }
 
     @Test
@@ -44,12 +39,8 @@ public class AcceptanceTests {
 
         ResultActions result = mockMvc.perform(request);
 
-        result
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(7)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(35455))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(25.45));
+        expectDefaultResults(result)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(25.45));
     }
 
     @Test
@@ -59,12 +50,8 @@ public class AcceptanceTests {
 
         ResultActions result = mockMvc.perform(request);
 
-        result
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(7)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(35455))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(35.50));
+        expectDefaultResults(result)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(35.50));
     }
 
     @Test
@@ -74,12 +61,8 @@ public class AcceptanceTests {
 
         ResultActions result = mockMvc.perform(request);
 
-        result
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(7)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(35455))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(30.50));
+        expectDefaultResults(result)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(30.50));
     }
 
     @Test
@@ -89,12 +72,16 @@ public class AcceptanceTests {
 
         ResultActions result = mockMvc.perform(request);
 
-        result
+        expectDefaultResults(result)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(38.95));
+    }
+
+    private static ResultActions expectDefaultResults(ResultActions result) throws Exception {
+        return result
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.*", hasSize(7)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.productId").value(35455))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(38.95));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.brandId").value(1));
     }
 
     private MockHttpServletRequestBuilder findPriceControllerBuilder() {
